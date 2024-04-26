@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-firebase/auth": "^19.2.2",
     "@react-navigation/native": "^6.0.2",
     "expo": "~49.0.23",
     "expo-font": "~11.4.0",
@@ -23,6 +25,7 @@
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
     "expo-web-browser": "~12.3.2",
+    "firebase": "^9.19.0",
     "lottie-react-native": "^6.7.2",
     "nativewind": "^4.0.36",
     "react": "18.2.0",
