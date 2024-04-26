@@ -5,6 +5,7 @@ import {StatusBar} from "expo-status-bar";
 import {Octicons} from "@expo/vector-icons";
 import {useRouter} from "expo-router";
 import Loading from "../components/Loading";
+import CustomKeyboardView from "../components/CustomKeyboardView";
 
 export default function SignIn() {
   const router = useRouter()
@@ -22,7 +23,7 @@ export default function SignIn() {
   }
   
   return (
-    <View className={'flex-1'}>
+    <CustomKeyboardView>
       <StatusBar style={'dark'}/>
       <View style={{paddingTop: hp(8), paddingHorizontal: wp(5)}} className={'flex-1 gap-12'}>
         <View className={'items-center'}>
@@ -82,7 +83,7 @@ export default function SignIn() {
           </View>
         </View>
       </View>
-    </View>
+    </CustomKeyboardView>
   )
 }
 
