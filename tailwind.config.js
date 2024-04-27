@@ -5,6 +5,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: ["tailwindcss-react-native/babel"],
+  plugins: [],
 }
 

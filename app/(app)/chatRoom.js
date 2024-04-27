@@ -1,4 +1,4 @@
-import {View, TextInput, TouchableOpacity, Alert} from 'react-native'
+import {View, TextInput, TouchableOpacity, Alert, Keyboard} from 'react-native'
 import React, {useEffect, useRef, useState} from 'react';
 import {useRouter, useSearchParams} from "expo-router";
 import {StatusBar} from "expo-status-bar";
@@ -19,6 +19,7 @@ export default function ChatRoom() {
   const [messages, setMessages] = useState([])
   const textRef = useRef('')
   const inputRef = useRef(null)
+  const scrollViewRef = useRef(null)
   
   useEffect(() => {
     createRoomIfNotExists()
@@ -28,17 +29,35 @@ export default function ChatRoom() {
     const msgRef = collection(docRef, 'messages')
     const q = query(msgRef, orderBy('createdAt', 'asc'))
     
-    return onSnapshot(q, (snapshot)  => {
+    const unsub = onSnapshot(q, (snapshot)  => {
       let allMsg = snapshot.docs.map(doc => {
         return doc.data()
       })
       setMessages([...allMsg])
     })
     
-    // return unsub
+    const KeyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow', updateScrollView
+    )
+    
+    return () => {
+      unsub()
+      KeyboardDidShowListener.remove()
+    }
   }, [])
   
-  console.log(messages)
+  useEffect(() => {
+    return () => {
+      updateScrollView()
+    };
+  }, [messages]);
+  
+  
+  const updateScrollView = () => {
+    setTimeout(() => {
+      scrollViewRef?.current?.scrollToEnd({animated: true})
+    }, 100)
+  }
   
   const createRoomIfNotExists = async () => {
     let roomId = getRoomId(user?.userId, item?.userId)
@@ -78,13 +97,14 @@ export default function ChatRoom() {
         <View className={'h-3 border-b border-neutral-300'}/>
         <View className={'flex-1 justify-between bg-neutral-100 overflow-visible'}>
           <View className={'flex-1'}>
-            <MessageList messages={messages}/>
+            <MessageList scrollViewRef={scrollViewRef} messages={messages} currentUser={user}/>
           </View>
           <View className={'pt-2'} style={{marginBottom: heightPercentageToDP(1.7)}}>
             <View className={'flex-row mx-3 justify-between bg-white p-2 border border-neutral-300 rounded-full pl-5'}>
               <TextInput
                 ref={inputRef}
                 placeholder={'Type message...'}
+                placeholderTextColor={'#737373'}
                 style={{fontSize: heightPercentageToDP(2)}}
                 className={'flex-1 mr-2'}
                 onChangeText={value => textRef.current = value}
