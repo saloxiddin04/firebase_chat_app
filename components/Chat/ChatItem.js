@@ -10,6 +10,8 @@ export default function ChatItem({item, noBorder, router, currentUser}) {
   
   const [lastMsg, setLastMsg] = useState(undefined)
   
+  console.log('item item', item?.profileUrl)
+  
   useEffect(() => {
     let roomId = getRoomId(currentUser?.userId, item?.userId)
     const docRef = doc(db, 'rooms', roomId)
@@ -22,8 +24,6 @@ export default function ChatItem({item, noBorder, router, currentUser}) {
       })
       setLastMsg(allMsg[0] ? allMsg[0] : null)
     })
-    
-    // return unsub
   }, [])
   
   const openChatRoom = () => {
@@ -50,7 +50,7 @@ export default function ChatItem({item, noBorder, router, currentUser}) {
   return (
     <TouchableOpacity onPress={openChatRoom} className={`flex-row justify-between mx-4 items-center gap-3 mb-4 pb-2 ${noBorder ? '' : 'border-b border-b-neutral-200'}`}>
       <Image
-        source={item.profileUrl}
+        source={{uri: item.profileUrl}}
         style={{height: heightPercentageToDP(6), width: heightPercentageToDP(6), borderRadius: 100}}
         placeholder={blurhash}
         transition={500}

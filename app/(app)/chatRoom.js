@@ -21,6 +21,8 @@ export default function ChatRoom() {
   const inputRef = useRef(null)
   const scrollViewRef = useRef(null)
   
+  console.log("item", item?.profileUrl)
+  
   useEffect(() => {
     createRoomIfNotExists()
     

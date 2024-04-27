@@ -1,10 +1,9 @@
-import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native'
+import {View, ActivityIndicator} from 'react-native'
 import React, {useEffect, useState} from 'react';
 import {useAuth} from "../../context/authContext";
 import {heightPercentageToDP as hp} from "react-native-responsive-screen";
 import {StatusBar} from "expo-status-bar";
 import ChatList from "../../components/Chat/ChatList";
-import Loading from "../../components/Loading";
 import {usersRef} from "../../firebaseConfig";
 import {getDocs, query, where} from "firebase/firestore";
 
