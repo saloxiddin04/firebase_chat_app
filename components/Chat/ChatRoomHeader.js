@@ -18,7 +18,7 @@ export default function ChatRoomHeader({user, router}) {
             </TouchableOpacity>
             <View className={'flex-row items-center gap-3'}>
               <Image
-                source={user?.profileUrl}
+                source={{uri: user?.profileUrl}}
                 style={{height: heightPercentageToDP(4.5), aspectRatio: 1, borderRadius: 100}}
               />
               <Text style={{fontSize: heightPercentageToDP(2.5)}} className={'text-neutral-700 font-medium'}>
