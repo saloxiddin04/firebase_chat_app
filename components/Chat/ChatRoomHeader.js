@@ -14,7 +14,6 @@ export default function ChatRoomHeader({user, router}) {
     return modifiedUrl;
   };
   
-  console.log("user", modifyProfileUrl(user?.profileUrl))
   return (
     <Stack.Screen
       options={{

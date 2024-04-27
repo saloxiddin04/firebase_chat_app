@@ -10,8 +10,6 @@ export default function ChatItem({item, noBorder, router, currentUser}) {
   
   const [lastMsg, setLastMsg] = useState(undefined)
   
-  console.log('item item', item?.profileUrl)
-  
   useEffect(() => {
     let roomId = getRoomId(currentUser?.userId, item?.userId)
     const docRef = doc(db, 'rooms', roomId)
