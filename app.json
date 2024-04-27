@@ -22,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/login.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.saloxiddin930.firebase_chat_app"
     },
     "web": {
       "bundler": "metro",
@@ -34,6 +35,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "fc779cb8-f88d-4a13-8c64-bb9473c9afaf"
+      }
     }
   }
 }
